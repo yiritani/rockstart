@@ -1,6 +1,18 @@
 version: '3.9'
 
 services:
+  gateway:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile.gateway.dev
+    ports:
+      - "8081:8081"
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/backend
+          target: ./app/apps/backend
+
   backend:
     build:
       context: ./apps/backend
@@ -11,7 +23,7 @@ services:
           path: ./apps/backend
           target: ./app/apps/backend
     ports:
-      - "8080:8080"
+      - "50051:50051"
     env_file:
       - ./apps/backend/.env.local
     volumes:

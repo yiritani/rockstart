@@ -1,0 +1,17 @@
+# .air.toml configuration
+[build]
+  # The command to run when building
+  cmd = "go build -o ./tmp/gateway ./src/gateway/main.go"
+  # The binary file path
+  bin = "./tmp/gateway"
+  # The full binary path
+  full_bin = "./tmp/gateway"
+
+[log]
+  level = "debug"
+
+[watch]
+  # Watch these directories for changes
+  includes = ["./src"]
+  # Ignore these directories
+  excludes = ["./vendor"]
