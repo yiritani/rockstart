@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package proto.v1.ping;
+
+option go_package = "rockstart/src/_generated/proto/v1;proto_v1";
+
+import "google/api/annotations.proto";
+
+message PingRequest {
+  string message = 1;
+}
+
+message PingResponse {
+  string message = 1;
+}
+
+service PingService {
+  rpc Ping(PingRequest) returns (PingResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/ping"
+      body: "*"
+    };
+  }
+}

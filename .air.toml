@@ -1,0 +1,14 @@
+# .air.toml example configuration
+[build]
+  cmd = "go build -o ./tmp/main ./src/cmd/main.go"
+  bin = "./tmp/main"
+  full_bin = "./tmp/main"
+
+[log]
+  level = "debug"
+
+[watch]
+  # Watch these directories for changes
+  includes = ["./src"]
+  # Ignore these directories
+  excludes = ["./tmp", "./vendor"] 

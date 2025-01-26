@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile.dev
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/backend
+          target: ./app/apps/backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./apps/backend/.env.local
+    volumes:
+      - ./apps/backend:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432" 
+    env_file:
+      - ./apps/backend/.env.local
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+volumes:
+  postgres_data:

@@ -1,0 +1,14 @@
+version: v2
+plugins:
+  - local: protoc-gen-go
+    out: src/_generated
+    opt:
+      - paths=source_relative
+  - local: protoc-gen-connect-go
+    out: src/_generated
+    opt:
+      - paths=source_relative
+  - local: protoc-gen-grpc-gateway
+    out: src/_generated
+    opt:
+      - paths=source_relative

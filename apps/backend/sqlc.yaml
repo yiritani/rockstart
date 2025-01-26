@@ -1,0 +1,14 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "./src/db/query/**/*.sql"
+    schema: "./src/db/migration/**/*.sql"
+    database:
+      uri: "postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=disable"
+      # uri: "postgres://postgres:postgres@localhost:5432/rockstart?sslmode=disable"
+    gen:
+      go:
+        package: "sqlc"
+        out: "src/_generated/sqlc"
+        emit_empty_slices: true
+        sql_package: "pgx/v5"

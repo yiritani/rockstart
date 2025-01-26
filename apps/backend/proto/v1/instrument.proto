@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package proto.v1.instrument;
+
+option go_package = "rockstart/src/_generated/proto/v1;proto_v1";
+
+message Instrument {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  string family = 4;
+  string subfamily = 5;
+  repeated string tags = 6;
+}
+
+message GetInstrumentsRequest {
+  string instrument_type = 1;
+  string instrument_family = 2;
+  string instrument_subfamily = 3;
+  repeated string tags = 4;
+  optional string search_query = 5;
+  optional string sort_by = 6;
+  optional bool ascending = 7;
+}
+
+message GetInstrumentsResponse {
+  repeated Instrument instruments = 1;
+}
+
+service InstrumentService {
+  rpc GetInstruments(GetInstrumentsRequest) returns (GetInstrumentsResponse);
+} 
