@@ -4,6 +4,8 @@ package proto.v1.instrument;
 
 option go_package = "rockstart/src/_generated/proto/v1;proto_v1";
 
+import "google/api/annotations.proto";
+
 message Instrument {
   string id = 1;
   string name = 2;
@@ -14,9 +16,9 @@ message Instrument {
 }
 
 message GetInstrumentsRequest {
-  string instrument_type = 1;
-  string instrument_family = 2;
-  string instrument_subfamily = 3;
+  optional string instrument_type = 1;
+  optional string instrument_family = 2;
+  optional string instrument_subfamily = 3;
   repeated string tags = 4;
   optional string search_query = 5;
   optional string sort_by = 6;
@@ -28,5 +30,9 @@ message GetInstrumentsResponse {
 }
 
 service InstrumentService {
-  rpc GetInstruments(GetInstrumentsRequest) returns (GetInstrumentsResponse);
+  rpc GetInstruments(GetInstrumentsRequest) returns (GetInstrumentsResponse){
+    option (google.api.http) = {
+      get: "/api/v1/instruments"
+    };
+  }
 } 
