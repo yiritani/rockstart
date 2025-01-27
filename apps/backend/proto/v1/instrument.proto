@@ -32,7 +32,8 @@ message GetInstrumentsResponse {
 service InstrumentService {
   rpc GetInstruments(GetInstrumentsRequest) returns (GetInstrumentsResponse){
     option (google.api.http) = {
-      get: "/api/v1/instruments"
+      post: "/api/v1/instruments"
+      body: "*"
     };
   }
 } 

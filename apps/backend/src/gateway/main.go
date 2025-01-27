@@ -32,6 +32,12 @@ func run() error {
 	if err != nil {
 		return err
 	}
+	err = gw.RegisterInstrumentServiceHandlerFromEndpoint(ctx, mux, *grpcServerEndpoint, opts)
+	if err != nil {
+		return err
+	}
+
+	//server.NewServer(ctx, mux, opts, *grpcServerEndpoint)
 
 	// Start HTTP server (and proxy calls to gRPC server endpoint)
 	return http.ListenAndServe(":8081", mux)
