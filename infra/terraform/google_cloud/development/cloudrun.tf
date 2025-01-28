@@ -21,7 +21,7 @@ resource "google_cloud_run_service" "backend" {
         image = "gcr.io/cloudrun/hello"
         # image = "${var.region}-docker.pkg.dev/${var.project_id}/${var.image_repo}/backend"
         ports {
-          container_port = 8080
+          container_port = 50051
         }
       }
     }

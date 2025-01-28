@@ -1,1 +1,7 @@
-.DS_Store
+**/.DS_Store
+
+infra/terraform/google_cloud/development/.terraform/*
+infra/terraform/google_cloud/development/.terraform.lock.hcl
+infra/terraform/google_cloud/development/terraform.tfstate
+infra/terraform/google_cloud/development/terraform.tfstate.backup
+
