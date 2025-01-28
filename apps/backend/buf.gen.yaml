@@ -4,11 +4,14 @@ plugins:
     out: src/_generated
     opt:
       - paths=source_relative
-  - local: protoc-gen-connect-go
-    out: src/_generated
-    opt:
-      - paths=source_relative
   - local: protoc-gen-grpc-gateway
     out: src/_generated
     opt:
       - paths=source_relative
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.24.0
+    out: src/_generated/openapi
+    opt:
+      - output_format=yaml
+      - allow_merge=true
+      - merge_file_name=api_definition.yml
+      - use_go_templates=true
