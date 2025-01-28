@@ -17,6 +17,6 @@ WORKDIR /app
 COPY --from=0 /app/main .
 
 # Expose the port your application runs on
-EXPOSE 8080
+EXPOSE 50051
 
 CMD ["./main"]
