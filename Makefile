@@ -31,6 +31,7 @@ protoc_openapi:
 	cd apps/backend && protoc -I .   \
     --openapiv2_out ./src/_generated/openapi/ \
     --openapiv2_opt logtostderr=true \
+    --openapiv2_opt allow_merge=true \
     proto/v1/*.proto
 
 protoc: protoc_backend protoc_gateway protoc_openapi

@@ -17,8 +17,7 @@ message PingResponse {
 service PingService {
   rpc Ping(PingRequest) returns (PingResponse) {
     option (google.api.http) = {
-      post: "/api/v1/ping"
-      body: "*"
+      get: "/api/v1/ping"
     };
   }
 }
