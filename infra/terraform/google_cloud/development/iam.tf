@@ -16,6 +16,11 @@ resource "google_service_account" "cloudrun_service_account" {
   display_name = "cloudrun-sa"
   description  = "Cloud run service account"
 }
+resource "google_service_account" "api_gateway_service_account" {
+  account_id   = "api-gateway-sa"
+  display_name = "api-gateway-sa"
+  description  = "API gateway service account"
+}
 resource "google_project_iam_binding" "cloud_run_admin" {
   project = var.project_id
   role    = "roles/run.admin"

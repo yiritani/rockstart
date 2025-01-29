@@ -6,10 +6,10 @@ resource "google_project_service" "cloud_build_api" {
   disable_on_destroy = false
 }
 
-resource "google_cloudbuild_trigger" "backend3" {
+resource "google_cloudbuild_trigger" "backend" {
   depends_on = [google_project_service.cloud_build_api]
 
-  name = "${var.service_name}-cloudbuild-trigger-backend3"
+  name = "${var.service_name}-cloudbuild-trigger-backend"
 
   substitutions = {
     _IMAGE      = "${var.region}-docker.pkg.dev/${var.project_id}/${var.image_repo}/backend"

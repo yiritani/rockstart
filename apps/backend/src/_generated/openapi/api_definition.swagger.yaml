@@ -251,6 +251,3 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protobufAny'
-x-google-backend:
-  address: https://rockstart-cloudrun-backend-851855441352.us-central1.run.app
-  path_translation: CONSTANT_ADDRESS
