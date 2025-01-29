@@ -1,4 +1,11 @@
+resource "google_project_service" "api_gateway_api" {
+  service = "apigateway.googleapis.com"
+  project = var.project_id
+  disable_on_destroy = false
+}
+
 resource "google_api_gateway_api" "api" {
+  depends_on = [google_project_service.api_gateway_api]
   provider = google-beta
   project = var.project_id
   api_id = "backend-api"
@@ -6,7 +13,7 @@ resource "google_api_gateway_api" "api" {
 }
 
 resource "google_api_gateway_api_config" "config" {
-  depends_on = [google_api_gateway_api.api]
+  depends_on = [google_api_gateway_api.api, google_project_service.api_gateway_api]
   provider = google-beta
   project = var.project_id
   api = google_api_gateway_api.api.api_id
@@ -28,6 +35,7 @@ resource "google_api_gateway_api_config" "config" {
 }
 
 resource "google_api_gateway_gateway" "gateway" {
+  depends_on = [google_api_gateway_api_config.config, google_project_service.api_gateway_api]
   provider = google-beta
   project = var.project_id
   gateway_id = "backend-gateway"

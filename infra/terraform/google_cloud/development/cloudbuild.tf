@@ -1,4 +1,17 @@
-# TODO: github リポとの接続は画面からやらないとダメなのかもしれない
+resource "google_cloudbuild_trigger" "github_trigger" {
+  name = "${var.service_name}-github-trigger"
+
+  github {
+    owner = "yiritani"
+    name  = "rockstart"
+    push {
+      branch = "master"
+    }
+  }
+
+  service_account = google_service_account.cloudbuild_service_account.id
+  filename = "cloudbuild.yaml"
+}
 
 resource "google_project_service" "cloud_build_api" {
   service = "cloudbuild.googleapis.com"
