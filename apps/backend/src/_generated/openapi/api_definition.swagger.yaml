@@ -32,7 +32,7 @@ paths:
       tags:
         - InstrumentService
   /api/v1/ping:
-    get:
+    post:
       operationId: PingService_Ping
       responses:
         "200":
@@ -44,10 +44,11 @@ paths:
           schema:
             $ref: '#/definitions/rpcStatus'
       parameters:
-        - name: message
-          in: query
-          required: false
-          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/pingPingRequest'
       tags:
         - PingService
 definitions:
@@ -112,6 +113,11 @@ definitions:
         type: array
         items:
           type: string
+  pingPingRequest:
+    type: object
+    properties:
+      message:
+        type: string
   pingPingResponse:
     type: object
     properties:
