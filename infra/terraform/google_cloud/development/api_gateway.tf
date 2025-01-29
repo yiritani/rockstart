@@ -27,6 +27,7 @@ resource "google_api_gateway_api_config" "config" {
           file("../../../../apps/backend/src/_generated/openapi/api_definition.swagger.yaml"),
           "x-google-backend:",
           "  address: ${google_cloud_run_service.backend.status[0].url}",
+          "  protocol: h2",
           "  path_translation: CONSTANT_ADDRESS"
         ])
       )
