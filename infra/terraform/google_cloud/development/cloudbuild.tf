@@ -29,8 +29,4 @@ resource "google_cloudbuild_trigger" "backend" {
 
   service_account = google_service_account.cloudbuild_service_account.id
   filename = "cloudbuild.yaml"
-
-  lifecycle {
-    prevent_destroy = true
-  }
 }
