@@ -4,6 +4,7 @@ resource "google_project_service" "cloud_build_api" {
   disable_on_destroy = false
 }
 
+# TODO: なぜかdestroyすると2度とtriggerされないのでterrafrom stateから削除しています
 resource "google_cloudbuild_trigger" "backend" {
   depends_on = [google_project_service.cloud_build_api]
 
@@ -19,6 +20,8 @@ resource "google_cloudbuild_trigger" "backend" {
     _CLOUD_RUN_SERVICE_ACCOUNT = google_service_account.cloudrun_service_account.email
   }
 
+  service_account = google_service_account.cloudbuild_service_account.id
+
   github {
     owner = "yiritani"
     name  = "rockstart"
@@ -27,6 +30,9 @@ resource "google_cloudbuild_trigger" "backend" {
     }
   }
 
-  service_account = google_service_account.cloudbuild_service_account.id
   filename = "cloudbuild.yaml"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
